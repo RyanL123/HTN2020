@@ -9,7 +9,9 @@ const config = {
     appId: "1:352855450184:web:bfe901aebf130800de2e7d",
 };
 
-firebase.initializeApp(config);
+if (!firebase.apps.length) {
+    firebase.initializeApp(config);
+}
 
 const ref = firebase.firestore().collection("data");
 
