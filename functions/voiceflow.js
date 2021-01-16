@@ -16,11 +16,10 @@ if (!firebase.apps.length) {
 const ref = firebase.firestore().collection("data");
 
 exports.handler = async function (event, context, callback) {
-    console.log(ref);
     if (event.httpMethod === "POST") {
+        console.log(event);
         const { number } = JSON.parse(event.body);
         console.log(number);
-        console.log(event);
         const res = await ref.doc("test1").set({ number: number });
         return {
             statusCode: 200,
