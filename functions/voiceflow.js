@@ -1,4 +1,5 @@
 const firebase = require("firebase");
+const shortid = require("shortid");
 
 const config = {
     apiKey: "AIzaSyCUMKP7f1rcG94J_Bb2TpFXA4lyL-aAMk4",
@@ -17,13 +18,12 @@ const ref = firebase.firestore().collection("data");
 
 exports.handler = async function (event, context, callback) {
     if (event.httpMethod === "POST") {
-        console.log(event);
         const { number } = JSON.parse(event.body);
-        console.log(number);
-        const res = await ref.doc("test1").set({ number: number });
+        const id = shortid.generate();
+        const res = await ref.doc(id).set({ number: number });
         return {
             statusCode: 200,
-            body: "Number: " + number.toString(),
+            body: JSON.stringify({ id: id }),
         };
     }
 };
