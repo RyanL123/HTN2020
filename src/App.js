@@ -1,35 +1,72 @@
-import React from "react"
-import "./App.css"
-import Stats from "./Stats"
+import React, { useState } from "react"
+import Stats from "./Pages/Stats"
+import { Button, Input, Heading, Box } from "@chakra-ui/react"
 import { BrowserRouter as Router, Route, Link } from "react-router-dom"
+import firebase from "firebase"
+
+const config = {
+    apiKey: "AIzaSyCUMKP7f1rcG94J_Bb2TpFXA4lyL-aAMk4",
+    authDomain: "htn2020-c3c0b.firebaseapp.com",
+    projectId: "htn2020-c3c0b",
+    storageBucket: "htn2020-c3c0b.appspot.com",
+    messagingSenderId: "352855450184",
+    appId: "1:352855450184:web:bfe901aebf130800de2e7d",
+}
+
+if (!firebase.apps.length) {
+    firebase.initializeApp(config)
+}
 
 function App() {
+    const [id, setId] = useState(null)
     return (
-        <Router>
-            <Route exact path="/">
-                <div className="App">
-                    <header className="App-header">
-                        <h1>Enter Code:</h1>
-                        <input
-                            className="inputBox"
-                            type="text"
-                            placeholder="CODE"
-                            tabindex="0"
-                            aria-label="code"
-                            maxlength="23"
-                            badinput="false"
-                            dir="ltr"
-                        ></input>
-                        <Link to="/Stats">
-                            <button type="submit">Enter</button>
+        <Box
+            px="10vh"
+            py="100px"
+            height="100vh"
+            display="flex"
+            flexDir="column"
+            alignItems="center"
+            justifyContent="center"
+            backgroundColor="rgb(26, 32, 44);"
+        >
+            <Router>
+                <Route exact path="/">
+                    <Box
+                        display="flex"
+                        flexDir="column"
+                        alignItems="center"
+                        justifyContent="center"
+                        height="100%"
+                        width="100%"
+                        maxWidth="500px"
+                    >
+                        <Heading size="4xl">Enter Code:</Heading>
+                        <Box pb="20px" pt="50px" width="100%">
+                            <Input
+                                placeholder="CODE"
+                                size="lg"
+                                onChange={e => setId(e.target.value)}
+                            />
+                        </Box>
+                        <Link to={`/${id}`}>
+                            <Box width="100%">
+                                <Button
+                                    colorScheme="blue"
+                                    width="100px"
+                                    size="lg"
+                                >
+                                    Enter
+                                </Button>
+                            </Box>
                         </Link>
-                    </header>
-                </div>
-            </Route>
-            <Route exact path="/Stats">
-                <Stats />
-            </Route>
-        </Router>
+                    </Box>
+                </Route>
+                <Route path="/:id">
+                    <Stats />
+                </Route>
+            </Router>
+        </Box>
     )
 }
 
