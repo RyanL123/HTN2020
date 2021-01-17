@@ -76,10 +76,11 @@ const Stats = () => {
                         justifyContent="space-between"
                         alignItems="center"
                     >
-                        <Heading color="white" mb="6px" size={"lg"}>
-                            {event.name}
+                        <Heading color="white" mb="6px" size="lg">
+                            {event.name} (
+                            {((totalTime * 100) / total).toFixed(1)}%)
                         </Heading>
-                        <Heading color="white" size={"md"}>
+                        <Heading color="white" size="md">
                             {Math.floor(event.hours / 3600)} hours{" "}
                             {event.minutes / 60} minutes
                         </Heading>
@@ -106,13 +107,14 @@ const Stats = () => {
         return (
             <>
                 <SEO title={id} />
-                <Box width="100%" maxWidth="500px">
+                <Box width="100%" maxWidth="800px">
                     <Box
                         mb="50px"
                         display="flex"
                         flexDir="column"
                         justifyContent="center"
                         alignItems="center"
+                        textAlign="center"
                     >
                         <Link to="/">
                             <Button
@@ -123,11 +125,14 @@ const Stats = () => {
                                 Back
                             </Button>
                         </Link>
-                        <Heading color="white">{date}</Heading>
-                        <Heading color="white" size="md">
+                        <Heading color="white" size="lg">
+                            Time Created: {date}
+                        </Heading>
+                        <Heading color="white" size="md" my="20px">
                             Total Time: {Math.floor(total / 3600)} hours{" "}
                             {(total % 3600) / 60} minutes
                         </Heading>
+                        <Heading size="md">Code: {id}</Heading>
                     </Box>
                     {eventProgress}
                 </Box>
