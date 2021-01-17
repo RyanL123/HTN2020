@@ -23,18 +23,20 @@ exports.handler = async function (event, context, callback) {
             .then(function (doc) {
                 if (doc.exists) {
                     events = doc.data().events
+                    events = [
+                        ...events,
+                        {
+                            colorScheme: colorScheme,
+                            hours: hours,
+                            minutes: minutes,
+                            name: name,
+                        },
+                    ]
+                    console.log(events)
                     dateCreated = doc.data().dateCreated
                     const res = ref.doc(session_id).set({
                         dateCreated: dateCreated,
-                        events: [
-                            ...events,
-                            {
-                                colorScheme: colorScheme,
-                                hours: hours,
-                                minutes: minutes,
-                                name: name,
-                            },
-                        ],
+                        events: events,
                     })
                 } else {
                     console.log("Document does not exist")
