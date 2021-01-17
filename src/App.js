@@ -1,13 +1,6 @@
 import React, { useState } from "react"
 import Stats from "./Pages/Stats"
-import {
-    Button,
-    Input,
-    Heading,
-    Box,
-    ChakraProvider,
-    extendTheme,
-} from "@chakra-ui/react"
+import { Button, Input, Heading, Box } from "@chakra-ui/react"
 import { BrowserRouter as Router, Route, Link } from "react-router-dom"
 import firebase from "firebase"
 
@@ -24,63 +17,59 @@ if (!firebase.apps.length) {
     firebase.initializeApp(config)
 }
 
-const theme = extendTheme()
-
 function App() {
     const [id, setId] = useState(null)
     return (
-        <ChakraProvider theme={theme}>
-            <Box
-                px="10vh"
-                py="100px"
-                height="100vh"
-                display="flex"
-                flexDir="column"
-                alignItems="center"
-                justifyContent="center"
-                backgroundColor="rgb(26, 32, 44);"
-            >
-                <Router>
-                    <Route exact path="/">
-                        <Box
-                            display="flex"
-                            flexDir="column"
-                            alignItems="center"
-                            justifyContent="center"
-                            height="100%"
-                            width="100%"
-                            maxWidth="500px"
-                        >
-                            <Heading size="4xl" color="white">
-                                Enter Code:
-                            </Heading>
-                            <Box pb="20px" pt="50px" width="100%">
-                                <Input
-                                    placeholder="CODE"
-                                    size="lg"
-                                    color="white"
-                                    onChange={e => setId(e.target.value)}
-                                />
-                            </Box>
-                            <Link to={`/${id}`}>
-                                <Box width="100%">
-                                    <Button
-                                        colorScheme="blue"
-                                        width="100px"
-                                        size="lg"
-                                    >
-                                        Enter
-                                    </Button>
-                                </Box>
-                            </Link>
+        <Box
+            px="10vh"
+            py="100px"
+            height="100vh"
+            display="flex"
+            flexDir="column"
+            alignItems="center"
+            justifyContent="center"
+            backgroundColor="rgb(26, 32, 44);"
+        >
+            <Router>
+                <Route exact path="/">
+                    <Box
+                        display="flex"
+                        flexDir="column"
+                        alignItems="center"
+                        justifyContent="center"
+                        height="100%"
+                        width="100%"
+                        maxWidth="500px"
+                    >
+                        <Heading size="4xl" color="white">
+                            Enter Code:
+                        </Heading>
+                        <Box pb="20px" pt="50px" width="100%">
+                            <Input
+                                placeholder="CODE"
+                                size="lg"
+                                color="white"
+                                onChange={e => setId(e.target.value)}
+                            />
                         </Box>
-                    </Route>
-                    <Route path="/:id">
-                        <Stats />
-                    </Route>
-                </Router>
-            </Box>
-        </ChakraProvider>
+                        <Link to={`/${id}`}>
+                            <Box width="100%">
+                                <Button
+                                    colorScheme="blue"
+                                    width="100px"
+                                    size="lg"
+                                >
+                                    Enter
+                                </Button>
+                            </Box>
+                        </Link>
+                    </Box>
+                </Route>
+                <Route path="/:id">
+                    <Stats />
+                </Route>
+            </Router>
+        </Box>
     )
 }
 
