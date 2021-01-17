@@ -39,7 +39,7 @@ const Stats = () => {
     if (loading) {
         return (
             <Box>
-                <Spinner size="xl" />
+                <Spinner size="xl" color="white" />
             </Box>
         )
     } else {
