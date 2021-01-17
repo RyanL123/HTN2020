@@ -19,18 +19,30 @@ exports.handler = async function (event, context, callback) {
         const { name, hours, minutes, colorScheme, session_id } = JSON.parse(
             event.body
         )
-        const res = await ref
-            .doc(session_id)
-            .update({ colorScheme: colorScheme, events: [] })
-        console.log(
-            ref.doc(session_id).update({
-                events: firebase.firestore.FieldValue.arrayUnion({
-                    hours: hours,
-                    minutes: minutes,
-                    name: name,
-                }),
+        ref.doc(session_id)
+            .get()
+            .then(function (doc) {
+                if (doc.exists) {
+                    events = doc.data().events
+                    const res = ref.doc(session_id).update({
+                        dateCreated: doc.data().dateCreated,
+                        events: [
+                            ...events,
+                            {
+                                colorScheme: colorScheme,
+                                hours: hours,
+                                minutes: minutes,
+                                name: name,
+                            },
+                        ],
+                    })
+                } else {
+                    return
+                }
             })
-        )
+            .catch(function (error) {
+                console.log("Error getting document:", error)
+            })
         return {
             statusCode: 200,
             body: JSON.stringify({
