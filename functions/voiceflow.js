@@ -37,7 +37,7 @@ exports.handler = async function (event, context, callback) {
                         ],
                     })
                 } else {
-                    return
+                    console.log("Document does not exist")
                 }
             })
             .catch(function (error) {
