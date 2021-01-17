@@ -77,10 +77,10 @@ const Stats = () => {
                         justifyContent="space-between"
                         alignItems="center"
                     >
-                        <Heading mb="6px" size={"lg"}>
+                        <Heading color="white" mb="6px" size={"lg"}>
                             {event.name}
                         </Heading>
-                        <Heading size={"md"}>
+                        <Heading color="white" size={"md"}>
                             {Math.floor(totalTime / 3600)} hours{" "}
                             {(totalTime % 3600) / 60} minutes
                         </Heading>
