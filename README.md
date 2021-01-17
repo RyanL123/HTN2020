@@ -1,4 +1,8 @@
 <h1 align="center">Systemaa.tech</h1>
+<p align="center">Systematically sending you voice reminders to help you be aware of your time</p>
+
+<div align="center">
+<a href="https://devpost.com/software/carpe-diem-u9agst">Devpost</a> | Demo Code: 8637yc</div>
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/eaa2a594-9a19-44f8-90f8-567402b3249f/deploy-status)](https://app.netlify.com/sites/systemma/deploys)
 
