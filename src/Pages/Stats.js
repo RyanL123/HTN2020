@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"
 import { Box, Spinner, Heading, Progress, Button } from "@chakra-ui/react"
 import { ArrowBackIcon } from "@chakra-ui/icons"
 import { Link } from "react-router-dom"
+import SEO from "../SEO"
 import firebase from "firebase"
 
 const config = {
@@ -105,31 +106,34 @@ const Stats = () => {
         )
     } else {
         return (
-            <Box width="100%" maxWidth="500px">
-                <Box
-                    mb="50px"
-                    display="flex"
-                    flexDir="column"
-                    justifyContent="center"
-                    alignItems="center"
-                >
-                    <Link to="/">
-                        <Button
-                            leftIcon={<ArrowBackIcon />}
-                            mb="50px"
-                            variant="link"
-                        >
-                            Back
-                        </Button>
-                    </Link>
-                    <Heading color="white">{date}</Heading>
-                    <Heading color="white" size="md">
-                        Total Time: {Math.floor(total / 3600)} hours{" "}
-                        {(total % 3600) / 60} minutes
-                    </Heading>
+            <>
+                <SEO title={id} />
+                <Box width="100%" maxWidth="500px">
+                    <Box
+                        mb="50px"
+                        display="flex"
+                        flexDir="column"
+                        justifyContent="center"
+                        alignItems="center"
+                    >
+                        <Link to="/">
+                            <Button
+                                leftIcon={<ArrowBackIcon />}
+                                mb="50px"
+                                variant="link"
+                            >
+                                Back
+                            </Button>
+                        </Link>
+                        <Heading color="white">{date}</Heading>
+                        <Heading color="white" size="md">
+                            Total Time: {Math.floor(total / 3600)} hours{" "}
+                            {(total % 3600) / 60} minutes
+                        </Heading>
+                    </Box>
+                    {eventProgress}
                 </Box>
-                {eventProgress}
-            </Box>
+            </>
         )
     }
 }
