@@ -21,7 +21,6 @@ exports.handler = async function (event, context, callback) {
         const res = await ref.doc(id).set({ dateCreated: Date.now() })
         return {
             statusCode: 200,
-            body: JSON.stringify({ id: id }),
         }
     }
 }
