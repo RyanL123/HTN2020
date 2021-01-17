@@ -26,11 +26,20 @@ exports.handler = async function (event, context, callback) {
         const res = await ref
             .doc(session_id)
             .set({ colorScheme: colorScheme, events: [] })
-        const res2 = await ref.doc(session_id).events.update({
-            start_time: start_time,
-            end_time: end_time,
-            name: name,
-        })
+        console.log(
+            ref.doc(session_id).update({
+                events: firebase.firestore.FieldValue.arrayUnion({
+                    start_time: start_time,
+                    end_time: end_time,
+                    name: name,
+                }),
+            })
+        )
+        // const res2 = await ref.doc(session_id).events.update({
+        //     start_time: start_time,
+        //     end_time: end_time,
+        //     name: name,
+        // })
         return {
             statusCode: 200,
             body: JSON.stringify({
