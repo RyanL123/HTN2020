@@ -19,14 +19,14 @@ if (!firebase.apps.length) {
 }
 
 function App() {
-    const [id, setId] = useState(null)
+    const [id, setId] = useState("")
     return (
         <>
             <SEO title="Carpe Diem" />
             <Box
                 px="10vh"
                 py="100px"
-                height="100vh"
+                minHeight="100vh"
                 display="flex"
                 flexDir="column"
                 alignItems="center"
@@ -52,10 +52,11 @@ function App() {
                                     placeholder="CODE"
                                     size="lg"
                                     color="white"
+                                    value={id}
                                     onChange={e => setId(e.target.value)}
                                 />
                             </Box>
-                            <Link to={`/${id}`}>
+                            <Link to={`/${id.replace(" ", "")}`}>
                                 <Box width="100%">
                                     <Button
                                         colorScheme="blue"
