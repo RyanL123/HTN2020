@@ -18,7 +18,9 @@ const ref = firebase.firestore().collection("data")
 exports.handler = async function (event, context, callback) {
     if (event.httpMethod === "POST") {
         const { id } = JSON.parse(event.body)
-        const res = await ref.doc(id).set({ dateCreated: Date.now() })
+        const res = await ref
+            .doc(id)
+            .set({ dateCreated: Date.now(), events: [] })
         return {
             statusCode: 200,
             body: "Success",

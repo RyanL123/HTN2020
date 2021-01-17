@@ -24,7 +24,7 @@ exports.handler = async function (event, context, callback) {
             .then(function (doc) {
                 if (doc.exists) {
                     events = doc.data().events
-                    const res = ref.doc(session_id).update({
+                    const res = ref.doc(session_id).set({
                         dateCreated: doc.data().dateCreated,
                         events: [
                             ...events,
