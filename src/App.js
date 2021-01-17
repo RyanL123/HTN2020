@@ -22,7 +22,7 @@ function App() {
     const [id, setId] = useState("")
     return (
         <>
-            <SEO title="Carpe Diem" />
+            <SEO title="Systemaa.tech" />
             <Box
                 px="10vh"
                 py="100px"
