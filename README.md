@@ -1,70 +1,27 @@
-# Getting Started with Create React App
+<h1 align="center">Systemaa.tech</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![Netlify Status](https://api.netlify.com/api/v1/badges/eaa2a594-9a19-44f8-90f8-567402b3249f/deploy-status)](https://app.netlify.com/sites/systemma/deploys)
 
-## Available Scripts
+## Inspiration
 
-In the project directory, you can run:
+Going into this hackathon, we wanted to solve an issue that people faced in their daily lives. Not being able to effectively manage our time was an apparent challenge, especially during the pandemic. To counter this issue, we built a tool that allows us to manage our time more effectively by presenting a breakdown of how we spend time each day.
 
-### `yarn start`
+## What it does
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+While existing time management apps simply send notifications to your phone, we implemented the functionality to communicate with virtual assistants (Alexa, Google Home, etc.). The effect of a “real person’s voice” talking to you is much more motivating than interacting with text. Our app allows the user to talk with their virtual assistant throughout the day on how they spent their time. The user then uses a generated 6-character alphanumeric code to access their personal stats page, a color-coded visual representation of how they spent their time.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## How we built it
 
-### `yarn test`
+We used Voiceflow as our backend and used React to build our front end. The Voiceflow API is able to communicate with our frontend through Netlify functions and store the data on Firebase. The code system allows users to retrieve data associated with their code on any platform without the need to log in. A graph is then dynamically generated based on the data retrieved from Firebase
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Challenges we ran into
 
-### `yarn build`
+It was our team’s first time using Voiceflow, so we spent a good chunk of our time learning through online tutorials and mentors. Although we managed to implement the most important functionalities with Voiceflow by the end, we weren’t able to fully implement all the interactions we initially designed.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Contributors
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+[Andy Chen](https://github.com/chen7944)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+[Andrew Zhang](https://github.com/zhangandrew37)
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[Curtis An](https://github.com/CurtisAn123)
