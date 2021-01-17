@@ -41,11 +41,14 @@ function App() {
                         width="100%"
                         maxWidth="500px"
                     >
-                        <Heading size="4xl">Enter Code:</Heading>
+                        <Heading size="4xl" color="white">
+                            Enter Code:
+                        </Heading>
                         <Box pb="20px" pt="50px" width="100%">
                             <Input
                                 placeholder="CODE"
                                 size="lg"
+                                color="white"
                                 onChange={e => setId(e.target.value)}
                             />
                         </Box>

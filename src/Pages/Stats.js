@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { useParams } from "react-router-dom"
-import { Box, Spinner } from "@chakra-ui/react"
+import { Box, Spinner, Heading } from "@chakra-ui/react"
 import firebase from "firebase"
 
 const config = {
@@ -39,11 +39,15 @@ const Stats = () => {
     if (loading) {
         return (
             <Box>
-                <Spinner />
+                <Spinner size="xl" />
             </Box>
         )
     } else {
-        return <Box>{num}</Box>
+        return (
+            <Box>
+                <Heading color="white">{num}</Heading>
+            </Box>
+        )
     }
 }
 
