@@ -16,7 +16,7 @@ if (!firebase.apps.length) {
     firebase.initializeApp(config)
 }
 
-export default () => {
+const Stats = () => {
     let { id } = useParams()
     const [loading, setLoading] = useState(true)
     const [num, setNum] = useState(null)
@@ -46,3 +46,5 @@ export default () => {
         return <Box>{num}</Box>
     }
 }
+
+export default Stats
