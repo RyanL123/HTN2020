@@ -12,9 +12,8 @@ if (!firebase.apps.length) {
     firebase.initializeApp(config)
 }
 
-const ref = firebase.firestore().collection("data")
-
 exports.handler = async function (event, context, callback) {
+    const ref = firebase.firestore().collection("data")
     if (event.httpMethod === "POST") {
         const { name, hours, minutes, colorScheme, session_id } = JSON.parse(
             event.body
@@ -24,8 +23,9 @@ exports.handler = async function (event, context, callback) {
             .then(function (doc) {
                 if (doc.exists) {
                     events = doc.data().events
+                    dateCreated = doc.data().dateCreated
                     const res = ref.doc(session_id).set({
-                        dateCreated: doc.data().dateCreated,
+                        dateCreated: dateCreated,
                         events: [
                             ...events,
                             {
