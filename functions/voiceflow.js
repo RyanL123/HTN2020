@@ -16,36 +16,27 @@ const ref = firebase.firestore().collection("data")
 
 exports.handler = async function (event, context, callback) {
     if (event.httpMethod === "POST") {
-        const {
-            name,
-            start_time,
-            end_time,
-            colorScheme,
-            session_id,
-        } = JSON.parse(event.body)
+        const { name, hours, minutes, colorScheme, session_id } = JSON.parse(
+            event.body
+        )
         const res = await ref
             .doc(session_id)
-            .set({ colorScheme: colorScheme, events: [] })
+            .update({ colorScheme: colorScheme, events: [] })
         console.log(
             ref.doc(session_id).update({
                 events: firebase.firestore.FieldValue.arrayUnion({
-                    start_time: start_time,
-                    end_time: end_time,
+                    hours: hours,
+                    minutes: minutes,
                     name: name,
                 }),
             })
         )
-        // const res2 = await ref.doc(session_id).events.update({
-        //     start_time: start_time,
-        //     end_time: end_time,
-        //     name: name,
-        // })
         return {
             statusCode: 200,
             body: JSON.stringify({
                 name: name,
-                start_time: start_time,
-                end_time: end_time,
+                hours: hours,
+                minutes: minutes,
                 colorScheme: colorScheme,
                 session_id: session_id,
             }),

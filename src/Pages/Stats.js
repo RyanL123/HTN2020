@@ -38,6 +38,7 @@ const Stats = () => {
                     setDate(date)
                     setEvents(doc.data().events)
                     setLoading(false)
+                    console.log(date)
                 } else {
                     setDate("That code does not exist")
                     setLoading(false)
@@ -54,7 +55,7 @@ const Stats = () => {
     useEffect(() => {
         let cur = 0
         for (let i = 0; i < events.length; i++) {
-            cur += events[i].end_time.seconds - events[i].start_time.seconds
+            cur += events[i].hours + events[i].minutes
         }
 
         setTotal(cur)
@@ -63,14 +64,11 @@ const Stats = () => {
     useEffect(() => {
         // sort based on total time
         let eventProgress = events.sort(
-            (a, b) =>
-                b.end_time.seconds -
-                b.start_time.seconds -
-                (a.end_time.seconds - a.start_time.seconds)
+            (a, b) => b.hours + b.minutes - (a.hours + a.minutes)
         )
         // map to components
         eventProgress = events.map(event => {
-            let totalTime = event.end_time.seconds - event.start_time.seconds
+            let totalTime = event.hours + event.minutes
             return (
                 <Box my="50px">
                     <Box
@@ -82,8 +80,8 @@ const Stats = () => {
                             {event.name}
                         </Heading>
                         <Heading color="white" size={"md"}>
-                            {Math.floor(totalTime / 3600)} hours{" "}
-                            {(totalTime % 3600) / 60} minutes
+                            {Math.floor(event.hours / 3600)} hours{" "}
+                            {event.minutes / 60} minutes
                         </Heading>
                     </Box>
                     <Progress
