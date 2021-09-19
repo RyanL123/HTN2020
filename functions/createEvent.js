@@ -33,7 +33,7 @@ exports.handler = async function (event, context, callback) {
                         },
                     ]
                     let dateCreated = doc.data().dateCreated
-                    const res = ref.doc(session_id).set({
+                    const res = await ref.doc(session_id).set({
                         dateCreated: dateCreated,
                         events: events,
                     })
