@@ -20,7 +20,7 @@ exports.handler = async function (event, context, callback) {
         )
         ref.doc(session_id)
             .get()
-            .then(function (doc) {
+            .then(async function (doc) {
                 if (doc.exists) {
                     let events = doc.data().events
                     events = [
