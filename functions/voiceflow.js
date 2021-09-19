@@ -32,28 +32,33 @@ exports.handler = async function (event, context, callback) {
                             name: name,
                         },
                     ]
-                    console.log(events)
                     dateCreated = doc.data().dateCreated
                     const res = ref.doc(session_id).set({
                         dateCreated: dateCreated,
                         events: events,
                     })
                 } else {
-                    console.log("Document does not exist")
+                    return {
+                        statusCode: 404,
+                        body: "Document does not exist",
+                    }
+                }
+                return {
+                    statusCode: 200,
+                    body: JSON.stringify({
+                        name: name,
+                        hours: hours,
+                        minutes: minutes,
+                        colorScheme: colorScheme,
+                        session_id: session_id,
+                    }),
                 }
             })
             .catch(function (error) {
-                console.log("Error getting document:", error)
+                return {
+                    statusCode: 404,
+                    body: "Error getting document:" + error,
+                }
             })
-        return {
-            statusCode: 200,
-            body: JSON.stringify({
-                name: name,
-                hours: hours,
-                minutes: minutes,
-                colorScheme: colorScheme,
-                session_id: session_id,
-            }),
-        }
     }
 }
