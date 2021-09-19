@@ -45,16 +45,6 @@ exports.handler = async function (event, context, callback) {
                         body: "Document does not exist",
                     }
                 }
-                return {
-                    statusCode: 200,
-                    body: JSON.stringify({
-                        name: name,
-                        hours: hours,
-                        minutes: minutes,
-                        colorScheme: colorScheme,
-                        session_id: session_id,
-                    }),
-                }
             })
             .catch(function (error) {
                 return {
@@ -62,5 +52,15 @@ exports.handler = async function (event, context, callback) {
                     body: "Error getting document:" + error,
                 }
             })
+        return {
+            statusCode: 200,
+            body: JSON.stringify({
+                name: name,
+                hours: hours,
+                minutes: minutes,
+                colorScheme: colorScheme,
+                session_id: session_id,
+            }),
+        }
     }
 }
