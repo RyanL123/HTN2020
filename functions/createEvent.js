@@ -1,4 +1,5 @@
 const firebase = require("firebase")
+
 const config = {
     apiKey: "AIzaSyCUMKP7f1rcG94J_Bb2TpFXA4lyL-aAMk4",
     authDomain: "htn2020-c3c0b.firebaseapp.com",
@@ -12,8 +13,9 @@ if (!firebase.apps.length) {
     firebase.initializeApp(config)
 }
 
+const ref = firebase.firestore().collection("data")
+
 exports.handler = async function (event, context, callback) {
-    const ref = firebase.firestore().collection("data")
     if (event.httpMethod === "POST") {
         const { name, hours, minutes, colorScheme, session_id } = JSON.parse(
             event.body
