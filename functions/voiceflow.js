@@ -13,52 +13,58 @@ if (!firebase.apps.length) {
 }
 
 exports.handler = async function (event, context, callback) {
-    const ref = firebase.firestore().collection("data")
-    if (event.httpMethod === "POST") {
-        const { name, hours, minutes, colorScheme, session_id } = JSON.parse(
-            event.body
-        )
-        ref.doc(session_id)
-            .get()
-            .then(function (doc) {
-                if (doc.exists) {
-                    events = doc.data().events
-                    events = [
-                        ...events,
-                        {
-                            colorScheme: colorScheme,
+    try {
+        const ref = firebase.firestore().collection("data")
+        if (event.httpMethod === "POST") {
+            const { name, hours, minutes, colorScheme, session_id } =
+                JSON.parse(event.body)
+            ref.doc(session_id)
+                .get()
+                .then(function (doc) {
+                    if (doc.exists) {
+                        events = doc.data().events
+                        events = [
+                            ...events,
+                            {
+                                colorScheme: colorScheme,
+                                hours: hours,
+                                minutes: minutes,
+                                name: name,
+                            },
+                        ]
+                        dateCreated = doc.data().dateCreated
+                        const res = ref.doc(session_id).set({
+                            dateCreated: dateCreated,
+                            events: events,
+                        })
+                    } else {
+                        return {
+                            statusCode: 400,
+                            body: "Document does not exist",
+                        }
+                    }
+                    return {
+                        statusCode: 200,
+                        body: JSON.stringify({
+                            name: name,
                             hours: hours,
                             minutes: minutes,
-                            name: name,
-                        },
-                    ]
-                    dateCreated = doc.data().dateCreated
-                    const res = ref.doc(session_id).set({
-                        dateCreated: dateCreated,
-                        events: events,
-                    })
-                } else {
-                    return {
-                        statusCode: 404,
-                        body: "Document does not exist",
+                            colorScheme: colorScheme,
+                            session_id: session_id,
+                        }),
                     }
-                }
-                return {
-                    statusCode: 200,
-                    body: JSON.stringify({
-                        name: name,
-                        hours: hours,
-                        minutes: minutes,
-                        colorScheme: colorScheme,
-                        session_id: session_id,
-                    }),
-                }
-            })
-            .catch(function (error) {
-                return {
-                    statusCode: 404,
-                    body: "Error getting document:" + error,
-                }
-            })
+                })
+                .catch(function (error) {
+                    return {
+                        statusCode: 400,
+                        body: "Error getting document:" + error,
+                    }
+                })
+        }
+    } catch (e) {
+        return {
+            statusCode: 400,
+            body: e.message,
+        }
     }
 }
